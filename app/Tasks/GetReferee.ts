@@ -16,10 +16,11 @@ export default class GetReferee extends BaseTask {
 	}
 
 	public async handle() {
-		console.log('handle')
+		// console.log('handle')
 		const clientV2 = new TwitterApi(Env.get('TWITTER_BEARER_TOKEN'))
-		// const today_date = new Date().toLocaleDateString();
-		// const start_time = new Date(today_date).toISOString();
+		const today_date = new Date().toLocaleDateString();
+		const start_time = new Date(today_date).toISOString();
+		// console.log(start_time);
 		// const minFriends = 2;
 		let data;
 		const referees = await Referee.query().where('isTweeted', false).andWhere('isRewarded', false).whereNotNull('accountId').whereNot('accountId', '');
@@ -28,7 +29,7 @@ export default class GetReferee extends BaseTask {
 		await referees.forEach(async (referee) => {
 			user = await clientV2.v2.userByUsername(referee.$attributes.accountId);
 			// data = await clientV2.v2.userTimeline(user.data.id, {start_time: start_time});
-			data = await clientV2.v2.userTimeline(user.data.id, {exclude: ['retweets'], "tweet.fields" : "entities"});
+			data = await clientV2.v2.userTimeline(user.data.id, {exclude: ['retweets'], "tweet.fields" : "entities", start_time: start_time});
 			const result = await this.checkingTwitter(data);
 			if(result){
 				await Referee.query().where("accountId", referee.$attributes.accountId).update({'isTweeted': true});
