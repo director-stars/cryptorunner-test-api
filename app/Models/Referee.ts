@@ -17,6 +17,9 @@ export default class Referee extends BaseModel {
   @column()
   public isTweeted: boolean
 
+  @column()
+  public lastclaimamount: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

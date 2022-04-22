@@ -86,4 +86,23 @@ export default class RefereesController {
             return false;
         }
     }
+
+    public async saveLastClaimAmount({request}) {
+        let result;
+        try{
+            const account = request.input('account');
+            const claimAmount = request.input('claimAmount');
+            const referee = await Referee.query().where('address', account).first();
+            if(referee){
+                referee.lastclaimamount = claimAmount;
+                referee.save();
+            }
+            result = "Succcess saved";
+            return {result: result};
+        } catch (error) {
+            console.log(error)
+            result = 'DB error';
+            return {result: result};
+        }
+    }
 }
