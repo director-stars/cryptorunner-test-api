@@ -31,4 +31,5 @@ Route.group(() => {
   Route.post("saveTwitterInfo", "RefereesController.saveTwitterInfo");
   Route.post("saveLastClaimAmount", "RefereesController.saveLastClaimAmount");
   Route.get("getTwitterInfo", "RefereesController.getTwitterInfo");
+  Route.get("getLastClaimAmount", "RefereesController.getLastClaimAmounts");
 }).prefix("api");

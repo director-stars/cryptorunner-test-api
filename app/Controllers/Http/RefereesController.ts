@@ -105,4 +105,17 @@ export default class RefereesController {
             return {result: result};
         }
     }
+
+    public async getLastClaimAmount({request}) {
+        try{
+            const account = request.input('account');
+            const referee = await Referee.query().where('address', account).first();
+            if(referee){
+                return referee.lastclaimamount;
+            }
+        } catch (error) {
+            console.log(error);
+            return '0';
+        }
+    }
 }
