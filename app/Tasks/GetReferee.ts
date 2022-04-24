@@ -24,7 +24,6 @@ export default class GetReferee extends BaseTask {
 		// const minFriends = 2;
 		let data;
 		const referees = await Referee.query().where('isTweeted', false).andWhere('isRewarded', false).whereNotNull('accountId').whereNot('accountId', '');
-		console.log(referees);
 		let user;
 		//data = await clientV2.v2.search(`conversation_id:${tweetUrl}`, {"tweet.fields" : "author_id", "max_results" : "100"});
 		await referees.forEach(async (referee) => {
@@ -60,7 +59,7 @@ export default class GetReferee extends BaseTask {
 			if(tweetData.entities){
 				if(tweetData.entities.urls){
 					for (const url of tweetData.entities.urls) {
-						if(url.expanded_url.includes('http://game.cryptorunner.io'))
+						if(url.expanded_url.includes('http://game.cryptorunner.io') || url.expanded_url.includes('https://game.cryptorunner.io'))
 							return true;
 					}
 				}
