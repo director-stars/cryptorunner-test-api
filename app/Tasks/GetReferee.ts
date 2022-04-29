@@ -59,7 +59,7 @@ export default class GetReferee extends BaseTask {
 			if(tweetData.entities){
 				if(tweetData.entities.urls){
 					for (const url of tweetData.entities.urls) {
-						if(url.expanded_url.includes('http://game.cryptorunner.io') || url.expanded_url.includes('https://game.cryptorunner.io'))
+						if(url.expanded_url.toLowerCase().includes('http://game.cryptorunner.io') || url.expanded_url.toLowerCase().includes('https://game.cryptorunner.io'))
 							return true;
 					}
 				}

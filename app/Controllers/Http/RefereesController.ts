@@ -61,8 +61,11 @@ export default class RefereesController {
                 referee.address = account;
                 referee.accountId = twitterName;
                 referee.save();
+                result = "Succcess saved";
             }
-            result = "Succcess saved";
+            else{
+                result = "You didn't claim bnb yet.";
+            }
             return {result: result};
         } catch (error) {
             console.log(error)
