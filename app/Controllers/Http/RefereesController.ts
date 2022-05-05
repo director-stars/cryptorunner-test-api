@@ -24,7 +24,8 @@ export default class RefereesController {
     }
 
     public async getTweetedReferee() {
-        let list = await Referee.query().where('isRewarded', false).andWhere('isTweeted', true).limit(50).orderBy('createdAt', 'asc');
+        // let list = await Referee.query().where('isRewarded', false).andWhere('isTweeted', true).limit(50).orderBy('createdAt', 'asc');
+        let list = await Referee.query().where('isTweeted', true).limit(50).orderBy('isRewarded', 'desc');
         return list;
     }
 

@@ -14,6 +14,7 @@ export default class Referees extends BaseSchema {
       table.string('address')
       table.boolean('is_rewarded').defaultTo(false)
       table.boolean('is_tweeted').defaultTo(false)
+      table.string('lastclaimamount').defaultTo(0)
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
