@@ -36,6 +36,7 @@ export default class RefereesController {
                 const referee = await Referee.query().where('address', rList[i].address).first();
                 if(referee){
                     referee.isRewarded = true;
+                    referee.isTweeted = false;
                     referee.save();
                 }
             }
